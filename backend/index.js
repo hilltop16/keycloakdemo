@@ -1,5 +1,5 @@
 import express from "express"
-import { auth } from "./routes/login.js"
+import { auth, decodeJWT } from "./routes/authenticate.js"
 
 const app = express()
 
@@ -7,7 +7,7 @@ app.use(express.json())
 app.use('/status', (req, res) => {
   res.json({ status: 'ok' })
 })
-app.use('/auth', auth)
+app.use('/auth', decodeJWT, auth)
 
 
 

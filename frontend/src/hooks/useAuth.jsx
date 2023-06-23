@@ -3,6 +3,7 @@ import Keycloak from "keycloak-js";
 
 const useAuth = () => {
   const isRun = useRef(false)
+  const [token, setToken] = useState(null)
   const [isLogin, setLogin] = useState(false)
 
   useEffect(() => {
@@ -18,10 +19,12 @@ const useAuth = () => {
 
     client.init({onLoad: 'login-required'}).then(res => {
       console.log('login status:', res)
+      console.log('authorization token:', client.token)
       setLogin(res)
+      setToken(client.token)
     })
   }, [])
-  return [isLogin]
+  return [isLogin, token]
 }
 
 export default useAuth
