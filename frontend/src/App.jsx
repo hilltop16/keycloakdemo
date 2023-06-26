@@ -1,15 +1,12 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 import Protected from './components/Protected'
 import Public from './components/Public'
 
-import useAuth from './hooks/useAuth'
+import useOauth2 from './hooks/useOauth2'
 
 function App() {
-  const [isLogin, token] = useAuth();
+  const [isLogin, token] = useOauth2();
   return isLogin ? <Protected token={token}/> : <Public />
 }
 
